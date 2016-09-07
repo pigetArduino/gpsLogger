@@ -47,7 +47,7 @@ or you can convert .csv to a gpx with http://www.gpsies.com/convert.do
 Design in progress, components will not fit without modification
 * Author : Olivier Sarrailh   
 https://github.com/pigetArduino/gpsLogger/blob/master/3D/5x7iTOP.stl   
-https://github.com/pigetArduino/gpsLogger/blob/master/3D/5x7iBase.stl   
+https://github.com/pigetArduino/gpsLogger/blob/master/3D/5x7iBASE.stl   
 
 
 
