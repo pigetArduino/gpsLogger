@@ -8,6 +8,7 @@ or you can convert .csv to a gpx with http://www.gpsies.com/convert.do
 ## Buzzer sound
 * Heavy sound : GPS/SD card fatal error
 * Soft repetitive sound : GPS is calibrating
+* Melody : GPS is online
 * Soft and short sound : GPS coordinates saved to sd  
 
 ## Components:
@@ -21,6 +22,7 @@ or you can convert .csv to a gpx with http://www.gpsies.com/convert.do
  * ftdi 3V/5V programmer
 
 ## Wiring:
+![Wiring GPS](https://github.com/pigetArduino/gpsLogger/blob/master/doc/gpsLogger_wiring.png)
 *  SD card 
 *  1 --> X
 *  2 --> 12
@@ -42,3 +44,10 @@ or you can convert .csv to a gpx with http://www.gpsies.com/convert.do
   * LowPower library
 
 ## 3D models
+Design in progress, components will not fit without modification
+* Author : Olivier Sarrailh
+https://github.com/pigetArduino/gpsLogger/blob/master/3D/5x7iTOP.stl
+https://github.com/pigetArduino/gpsLogger/blob/master/3D/5x7iBase.stl
+
+
+
