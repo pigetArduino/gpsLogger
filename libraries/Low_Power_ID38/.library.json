@@ -1,0 +1,40 @@
+{
+    "description": "Lightweight power management library", 
+    "repository": {
+        "url": "https://github.com/rocketscream/Low-Power", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "atmelavr", 
+        "atmelsam"
+    ], 
+    "export": {
+        "exclude": [
+            "extras", 
+            "docs", 
+            "tests", 
+            "test", 
+            "*.doxyfile", 
+            "*.pdf"
+        ], 
+        "include": null
+    }, 
+    "authors": [
+        {
+            "maintainer": true, 
+            "name": "Rocket Scream Electronics", 
+            "url": null, 
+            "email": null
+        }
+    ], 
+    "keywords": [
+        "other"
+    ], 
+    "id": 38, 
+    "name": "Low-Power", 
+    "frameworks": [
+        "arduino"
+    ], 
+    "version": "1.6", 
+    "homepage": null
+}
