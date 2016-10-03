@@ -1,28 +1,30 @@
 /*
   Author: MadNerd.org
+  Date:10/03/2016
   Licence: Mit
 
-  Log speed/altitude/gps coordinate in a .csv file (DAYHOURMINUTESSECOND.csv)
+  Log speed/altitude/gps coordinate in a universal csv file (DAYHOURMINUTESSECOND.csv)
+  You can convert .csv to a gpx with http://www.gpsies.com/convert.do
+  You can also display it on viking https://sourceforge.net/projects/viking/
   You can reuse theses values in any spreedsheet software (LibreOffice/Excel...)
-  or you can convert .csv to a gpx with http://www.gpsies.com/convert.do
 
   Buzzer sound
   -- Heavy sound : GPS/SD card fatal error
   -- Soft repetitive sound : GPS is calibrating
-  -- Soft and short sound : GPS coordinates saved to sd  
+  -- Soft and short sound : GPS coordinates saved to sd
 
   Components:
-  * Ublox GPS module (or compatible with tinygps++)
-  * Micro SD to SD card Adapter
-  * A buzzer
-  * An Arduino Pro Mini 3V
-  * Batteries
+    Ublox GPS module (or compatible with tinygps++)
+    Micro SD to SD card Adapter
+    A buzzer
+    An Arduino Pro Mini 3V
+    Batteries
 
   Tools:
   ftdi 3V/5V programmer
 
   Wiring:
-  SD card 
+  SD card
   1 --> X
   2 --> 12
   3 --> GND
@@ -35,12 +37,11 @@
   GPS
   RX --> 2
   TX --> 3
-  VCC --> VCC
-  GND --> GND
 
-  You will need 
-  * TinyGPS++ library
-  * LowPower library
+  Buzzer --> 9
+
+  You will need
+    TinyGPS++ library
 
   Previous Readme
   This example uses software serial and the TinyGPS++ library by Mikal Hart
@@ -50,21 +51,20 @@
 //GPS
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
-#include "LowPower.h"
 //SD
 #include <SPI.h>
 #include <SD.h>
 
 //Interval between gps position log
-const int gps_interval = 2; //Multiples of 8 seconds (here 8x2sec = 16s)
+const int gps_interval = 15 * 1000; //Multiples of 8 seconds (here 8x2sec = 16s)
 
-//GPS TX/RX 
+//GPS TX/RX
 //Don't use TX/RX pins on the arduino or you won't be able to upload code on it
 //or debug it.
-const int RXPin = 2;
-const int TXPin = 3;
+const int RXPin = 3;
+const int TXPin = 2;
 
-const int timezone = 1;
+const int timezone = 2;
 //France +1
 //England +0
 //etc...
@@ -79,7 +79,7 @@ const int chipSelect = 10;
 const int buzzer = 9;
 
 
-bool timeOK = false;
+bool locationOK = false;
 bool posOK = false;
 bool sdOK = true;
 String string_filename;
@@ -91,7 +91,7 @@ String s_year;
 String s_hour;
 String s_minute;
 String s_second;
-int last_minute;
+
 
 
 // Create a TinyGPS++ object called "gps"
@@ -99,21 +99,18 @@ TinyGPSPlus gps;
 
 // Create a software serial port called "gpsSerial"
 // We can't use TX/RX pins if we don't want to lose the ability to debug/upload code
-SoftwareSerial gpsSerial(RXPin, TXPin);
+SoftwareSerial gpsSerial(TXPin, RXPin);
 
 
-void sleep8sec(int multiples){
-  for (int i = 0; i < multiples; i++){
-    LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
-  }
+void wait() {
+  delay(gps_interval);
 }
 
 void setup()
 {
   // Start the Arduino hardware serial port at 9600 baud
-  
   Serial.begin(9600);
-  buzz(800,200);
+  buzz(800, 200);
   // Start the software serial port at the GPS's default baud
   gpsSerial.begin(GPSBaud);
 
@@ -140,7 +137,7 @@ void loop()
   if (millis() > 5000 && gps.charsProcessed() < 10)
   {
     Serial.println(F("GPS : ERROR"));
-    buzz(700,2000); //GPS error panic
+    buzz(700, 2000); //GPS error panic
   }
 
 }
@@ -150,7 +147,7 @@ void writeHeaders() {
   Serial.println(filename);
   File gpsFile = SD.open(filename, FILE_WRITE);
   if (gpsFile) {
-    gpsFile.println("Latitude,Longitude,Elevation,Time,Speed");
+    gpsFile.println("Latitude,Longitude,Alt,Date,Time,Speed");
   } else {
     Serial.println("SD : ERROR WRITING");
   }
@@ -161,7 +158,7 @@ void displayInfo()
 {
   //Check if SD card works or stop
   if (sdOK) {
-    
+
     //Date Formatting
 
     s_year = gps.date.year();
@@ -228,41 +225,51 @@ void displayInfo()
     Serial.println();
 
     //If time / lat is set we write to the SD Card
-    
-  
-      //We need to also check date/hour in case of deconnection
-      //It seems the date is reset and last gps location is displayed      
+
+
+    //If GPS didn't find position
+    if (! locationOK) {
+      //GPS found position
       if (gps.location.lat() != 0)
       {
-        if (! timeOK) {
-         buzz(600,1000);
-         string_filename = s_day + s_hour + s_minute + s_second + ".csv";
+        buzz(600, 1000);
+        
+        //Create filename
+        string_filename = s_day + s_hour + s_minute + s_second + ".csv";
 
-         //Convert string to char
-         unsigned int bufSize = string_filename.length() + 1; //String length + null terminator
-         filename = new char[bufSize];
-         string_filename.toCharArray(filename, bufSize);
+        //Convert filename string to char
+        unsigned int bufSize = string_filename.length() + 1; //String length + null terminator
+        filename = new char[bufSize];
+        string_filename.toCharArray(filename, bufSize);
 
-         //filename = "gps_" + s_year;
-         //filename =  filename +  "-" + s_month + "-" + s_day + "_" + s_hour + "-" + s_minute + "-" + s_second + ".txt";
-         timeOK = true;
-         Serial.println("FILENAME");
-         Serial.println(filename);
-         writeHeaders();
-         last_minute = -1;
-        }
-      } else {
-        //Buzz until GPS is OK
-        buzz(5,5);
+        //GPS found
+        locationOK = true;
+
+        Serial.println("FILENAME");
+        Serial.println(filename);
+
+        //Write first line of CSV
+        writeHeaders();
+
       }
+    } else {
+      //Buzz until GPS is OK
+      buzz(5, 5);
+    }
 
-    if (timeOK) {
-        //We make the arduino sleep for 16s, each 8 seconds the arduino
-        //will wake up to put him to sleep again.
-        sleep8sec(gps_interval);      
+
+    if (locationOK) {
+      //Check if GPS hasn't lost position (it will keep last position but reset date)
+      if (gps.date.year() != 2000)
+      {
+        //We make the arduino wait, we could make the arduino sleep,
+        //But I think we need to move the GPS pin to a non interrupt pin.
+        //LowPower seems to make the arduino wakes up each time the GPS send
+        //a message
+        wait();
 
         //Buzz to tell the user data is logged
-        buzz(200,100);
+        buzz(200, 100);
         Serial.println("APPEND");
         File gpsFile = SD.open(filename, FILE_WRITE);
         if (gpsFile) {
@@ -273,14 +280,16 @@ void displayInfo()
           gpsFile.print(F(","));
           gpsFile.print(gps.altitude.meters());
 
-          //Time
+          //Date 2003/06/29
           gpsFile.print(F(","));
-          gpsFile.print(s_day);
+          gpsFile.print(s_year);
           gpsFile.print(F("/"));
           gpsFile.print(s_month);
           gpsFile.print(F("/"));
-          gpsFile.print(s_year);
-          gpsFile.print(" ");
+          gpsFile.print(s_day);
+
+          //Time 09:00:00
+          gpsFile.print(",");
           gpsFile.print(s_hour);
           gpsFile.print(F(":"));
           gpsFile.print(s_minute);
@@ -296,21 +305,53 @@ void displayInfo()
           Serial.println("SD : ERROR WRITING");
         }
         gpsFile.close();
-        last_minute = gps.time.minute();
-      } else {
-        buzz(5,5); //Searching satellite
+      }
+    } else {
+      buzz(5, 5); //Searching satellite
     }
   } else {
-     buzz(600,1000); // No SD card panic
+    buzz(600, 1000); // No SD card panic
   }
 
 }
 
-void buzz(int freq,int waitTime){
-  tone(buzzer,freq);
+void buzz(int freq, int waitTime) {
+  tone(buzzer, freq);
   delay(waitTime);
   noTone(buzzer);
-  delay(waitTime); 
-  digitalWrite(13,LOW);
+  delay(waitTime);
+  digitalWrite(13, LOW);
 }
+
+
+/*
+
+  +-------------------------------+     +----------------------------------+
+  |                               |     |           +--+ +--+ +--+ +--+    |
+  |                               |     |   ---     |  | |  | |  | |  |    |
+  |                               |     |  +   |    +--+ +--+ +--+ +--+    |
+  |       SD CARD                 |     |   ---                            |
+  |                               |     |           GND   RX  TX   VCC     |
+  |                               |     |                                  |
+  |                               |     |            +     +   +    +      |
+  |                               |     |            |     |   |    |      |
+  |                               |     |            |     |   |    |      |
+  |                               |     |            v     v   v    v      |
+  |                               |     |           GND    2   3   VCC     |
+  |                               |     |                                  |
+  |                               |     |          +---------------+       |
+ +-                               ++    |          |               |       |
+ |                                 |    |          | Ublox GPS     |       |
+ |                                ++    |          |               |       |
+ |                            +-+ |     |          |               |       |
+ +-                           |-| |     |          +---------------+       |
+  |                           +-+ |     |                                  |
+  | +---+ +-+ +-+ +-+ +-+ +-+     |     |                                  |
+  | |-| | | | | | | | | | | |     |     |                                  |
+  | +---+ +-+ +-+ +-+ +-+ +-+     |     |                                  |
+  +   12 GND  13  VCC 11  10     ++     |                                  |
+  +-----------------------------+       +----------------------------------+
+
+*/
+
 
