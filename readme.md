@@ -21,8 +21,10 @@ Log speed/altitude/gps coordinate in a universal .csv file on an SD card every 1
   * 2Go (or less) Micro SD card 
   * A buzzer
   * An Arduino Pro Mini 3V
-  * Batteries
-Estimate cost : 15.50€
+  * Batteries   
+
+Estimate cost : 15.50€   
+
 More details on [bill_of_materials.md](https://github.com/pigetArduino/gpsLogger/blob/master/doc/bill_of_materials.md)
 
 #  Tools:
@@ -48,6 +50,7 @@ TX --> 3
 
 ```
 # Buzzer
+```
 + ---> 9
 ```
 
@@ -57,6 +60,6 @@ TinyGPS++ library
 ```
 
 # 3D models
-[See 3D models](https://github.com/pigetArduino/gpsLogger/blob/master/3Dmodels/)
+[See 3D models](https://github.com/pigetArduino/gpsLogger/blob/master/3D/)
 * Author : Olivier Sarrailh   
  
