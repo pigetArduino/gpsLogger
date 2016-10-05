@@ -71,8 +71,8 @@ const int timezone = 2;
 /* GPS */
 
 //GPS TX/RX (don't use default TX/RX)
-const int RXPin = 4;
-const int TXPin = 5;
+const int RXPin = 2;
+const int TXPin = 3;
 
 // Ublox run at 9600
 const int GPSBaud = 9600;
