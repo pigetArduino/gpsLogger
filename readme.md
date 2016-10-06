@@ -1,6 +1,8 @@
 GPS Logger
 ----------
 
+[Version française disponible](https://github.com/pigetArduino/gpsLogger/blob/master/readme.fr.md)
+
 Log speed/altitude/gps coordinate in a universal .csv file on an SD card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
 [Example file](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
 
@@ -61,5 +63,11 @@ TinyGPS++ library
 
 # 3D models
 [See 3D models](https://github.com/pigetArduino/gpsLogger/blob/master/3D/)
+```
+Tested on Ultimaker 2 GO with PLA
+To improve solidity print A in solid
+A Infill: Solid
+B Infill: Dense
+```
 * Author : Olivier Sarrailh   
  
