@@ -1,14 +1,17 @@
 GPS Logger
 ----------
 
-[Version française disponible](https://github.com/pigetArduino/gpsLogger/blob/master/readme.fr.md)
+[Version française / French version](https://github.com/pigetArduino/gpsLogger/blob/master/readme.fr.md)
 
 Log speed/altitude/gps coordinate in a universal .csv file on an SD card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
 [Example file](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
 
+# Project link
+http://gps.madnerd.org
+
 # Compatibility
-* Libre office calc / Excel
-* Gpsies.com (you can convert it in gpx) 
+* Libre office calc / Microsoft Excel
+* http://gpsies.com (you can convert it in gpx) 
 * Viking : https://sourceforge.net/projects/viking/
 
 # Buzzer sound
@@ -25,16 +28,30 @@ Log speed/altitude/gps coordinate in a universal .csv file on an SD card every 1
   * An Arduino Pro Mini 3V
   * Batteries   
 
-Estimate cost : 15.50€   
+Estimate cost : 15.50€ (batteries not included) 
 
 More details on [bill_of_materials.md](https://github.com/pigetArduino/gpsLogger/blob/master/doc/bill_of_materials.md)
 
 #  Tools:
  * ftdi 3V/5V programmer
 
+# Software needed:
+  * Arduino (Programmation): http://arduino.madnerd.org
+  * Cura (3D printing): https://ultimaker.com/en/products/cura-software
+
+# 3D models
+[See 3D models](https://github.com/pigetArduino/gpsLogger/blob/master/3D/)
+```
+Tested on Ultimaker 2 GO with PLA
+To improve solidity print A in solid
+A Infill: Solid
+B Infill: Light
+```
+* Author : Olivier Sarrailh   
+
 # Wiring:
 ![Wiring GPS](https://github.com/pigetArduino/gpsLogger/blob/master/doc/gpsLogger_wiring.png)
-#  SD card 
+##  SD card 
 ```
 1 --> X
 2 --> 12
@@ -45,29 +62,16 @@ More details on [bill_of_materials.md](https://github.com/pigetArduino/gpsLogger
 7 --> 11
 8 --> 10 (Chip select)
 ```
-#  GPS
+##  GPS
 ```
 RX --> 2
 TX --> 3
 
 ```
-# Buzzer
+## Buzzer
 ```
 + ---> 9
 ```
 
-# Libraries
-```
-TinyGPS++ library
-```
-
-# 3D models
-[See 3D models](https://github.com/pigetArduino/gpsLogger/blob/master/3D/)
-```
-Tested on Ultimaker 2 GO with PLA
-To improve solidity print A in solid
-A Infill: Solid
-B Infill: Dense
-```
-* Author : Olivier Sarrailh   
- 
+## Libraries
+TinyGPS++ library : https://github.com/mikalhart/TinyGPSPlus

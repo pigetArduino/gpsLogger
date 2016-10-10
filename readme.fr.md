@@ -3,11 +3,14 @@ Traceur GPS (GPS Logger)
 
 Enregistrer la vitesse/l'altitude/les coordonées GPS dans un fichier universal .csv sur une carte SD toutes les 15 seconds   
 (JOURHEUREMINUTESSECONDES.CSV)
-[Fichier d'example](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
+[Fichier d'exemple](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
+
+# Lien vers le Projet
+http://gps.madnerd.org
 
 # Compatibilité
 * Libre office calc / Excel
-* http://www.gpsies.com (Vous pouvez convertir le fichier en gpx) 
+* http://gpsies.com (Vous pouvez convertir le fichier en gpx) 
 * Viking : https://sourceforge.net/projects/viking/
 
 # Sound du Buzzer
@@ -31,34 +34,13 @@ Plus de détails ici: [bill_of_materials.md](https://github.com/pigetArduino/gps
 #  Outils:
  * Programmeur ftdi 3V/5V
 
-# Câblage:
-![Wiring GPS](https://github.com/pigetArduino/gpsLogger/blob/master/doc/gpsLogger_wiring.png)
-#  Carte SD 
-```
-1 --> X
-2 --> 12
-3 --> GND
-4 --> 13
-5 --> VCC
-6 --> GND
-7 --> 11
-8 --> 10 (Chip select)
-```
-#  GPS
-```
-RX --> 2
-TX --> 3
+# Logiciels:
+  * Arduino (Programmation): http://arduino.madnerd.org
+  * Cura (3D printing): https://ultimaker.com/en/products/cura-software
 
-```
-# Buzzer
-```
-+ ---> 9
-```
+## Bibliothèques
+TinyGPS++ library : https://github.com/mikalhart/TinyGPSPlus
 
-# Bibliothèques
-```
-TinyGPS++ library
-```
 
 # Modèles 3D
 [Voir les modèles 3D](https://github.com/pigetArduino/gpsLogger/blob/master/3D/)
@@ -70,3 +52,27 @@ B Infill: Dense
 ```
 * Auteur : Olivier Sarrailh   
  
+# Câblage:
+![Wiring GPS](https://github.com/pigetArduino/gpsLogger/blob/master/doc/gpsLogger_wiring.png)
+##  Carte SD 
+```
+1 --> X
+2 --> 12
+3 --> GND
+4 --> 13
+5 --> VCC
+6 --> GND
+7 --> 11
+8 --> 10 (Chip select)
+```
+##  GPS
+```
+RX --> 2
+TX --> 3
+
+```
+## Buzzer
+```
++ ---> 9
+```
+
