@@ -300,7 +300,7 @@ void saveToSD() {
 
           //Altitude (meters) (doesn't seems to work)
           gpsFile.print(F(","));
-          gpsFile.print(gps.altitude.meters());
+          gpsFile.print(gps.altitude.meters(), 6);
 
           //Date 2003/06/29
           gpsFile.print(F(","));
