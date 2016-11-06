@@ -63,7 +63,7 @@
 //Seconds between save
 const int gps_interval = 15 * 1000;
 
-const int timezone = 2;
+const int timezone = 0;
 //France +1
 //England +0
 //etc...
@@ -236,7 +236,7 @@ void displayInfo() {
   Serial.print(F(","));
   Serial.print(gps.location.lng(), 6);
   Serial.print(F(","));
-  Serial.print(gps.altitude.meters());
+  Serial.print(gps.altitude.meters(), 6);
   Serial.print(F(","));
   Serial.print(gps.speed.kmph());
   Serial.println();

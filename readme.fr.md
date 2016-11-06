@@ -1,17 +1,28 @@
 Traceur GPS (GPS Logger) 
 ----------
 
-Enregistrer la vitesse/l'altitude/les coordonées GPS dans un fichier universal .csv sur une carte SD toutes les 15 seconds   
+Enregistre les coordonées GPS dans un fichier csv sur une carte micro sd toutes les 15 seconds   
 (JOURHEUREMINUTESSECONDES.CSV)
 [Fichier d'exemple](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
 
-# Lien vers le Projet
+# Télécharger
 http://gps.madnerd.org
 
-# Compatibilité
-* Libre office calc / Excel
-* http://gpsies.com (Vous pouvez convertir le fichier en gpx) 
-* Viking : https://sourceforge.net/projects/viking/
+# Comment convertir le parcours
+## Gpsies.com
+* Aller sur http://gpsies.com
+* Cliquer sur Créer un parcours
+* Importer votre fichier csv
+* Ou Cliquer sur convertir pour avoir un fichier gpx
+
+## Viking
+* Télécharger Viking ici : https://sourceforge.net/projects/viking/
+* Aller sur fichier
+* Récupérer
+* Import file with GPS Babel
+* Choosisez (à la fin de la liste) : Import with gps babel
+* Ajouter une map dans couches
+* Utilisez Open Street Map (Mapnick) ou Bing Aerial
 
 # Sound du Buzzer
 * Son fort: Erreur de câblage ou carte SD absente
@@ -19,28 +30,23 @@ http://gps.madnerd.org
 * Mélodie : Le GPS est fonctionnel
 * Son calme, court , toutes les 15 secondes:  Coordonées sauvegardées  
 
-# Composants:
-  * Module GPS Ublox (ou compatible avec tinygps++)
-  * Adapteur Micro SD vers carte SD
-  * Carte MicroSD de 2Go (ou moins) 
-  * Un buzzer
-  * Un Arduino Pro Mini 3V
-  * Un boitier de piles AAA / Piles AAA   
+# Composants
+Utilisez ses mots-clés pour chercher les composants:
+* Gps module ublox Aircraft model mwc: 8€
+* Micro sd card 2go : 4€
+* Batteries holder 4AAA on/off : 1€ 
+* Arduino mini pro 3.3V : 1,50€
+* Passive buzzer 3v:  1€  
+* Total : 15.50€   
 
-Coût estimée: 15.50€   
-
-Plus de détails ici: [bill_of_materials.md](https://github.com/pigetArduino/gpsLogger/blob/master/doc/bill_of_materials.md)
-
-#  Outils:
- * Programmeur ftdi 3V/5V
+# Outils
+* FTDI basic breakout usb ttl 3.3 : 6.23€
+* Cable 30awg  8-color: 5.37€
+ 
 
 # Logiciels:
   * Arduino (Programmation): http://arduino.madnerd.org
   * Cura (3D printing): https://ultimaker.com/en/products/cura-software
-
-## Bibliothèques
-TinyGPS++ library : https://github.com/mikalhart/TinyGPSPlus
-
 
 # Modèles 3D
 [Voir les modèles 3D](https://github.com/pigetArduino/gpsLogger/blob/master/3D/)
@@ -76,3 +82,5 @@ TX --> 3
 + ---> 9
 ```
 
+## Bibliothèques
+TinyGPS++ library : https://github.com/mikalhart/TinyGPSPlus

@@ -3,38 +3,49 @@ GPS Logger
 
 [Version française / French version](https://github.com/pigetArduino/gpsLogger/blob/master/readme.fr.md)
 
-Log speed/altitude/gps coordinate in a universal .csv file on an SD card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
+Record gps coordinate in a csv file on an SD card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
 [Example file](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
 
-# Project link
+# Download link
 http://gps.madnerd.org
 
-# Compatibility
-* Libre office calc / Microsoft Excel
-* http://gpsies.com (you can convert it in gpx) 
-* Viking : https://sourceforge.net/projects/viking/
+# How to convert the track
 
-# Buzzer sound
-* Heavy sound : GPS/SD card fatal error
+## Gpsies.com
+* Go to http://gpsies.com
+* Click on Create a track
+* Import the csv file
+* Or click on convert to get a gpx track file
+
+## Viking
+* Download it here : https://sourceforge.net/projects/viking/
+* Go to file
+* Retrieve
+* Import file with GPS Babel
+* Choose (at the end of the list) : Import with gps babel
+* Add a map in layer
+* Use Open Street Map (Mapnick) or Bing Aerial
+
+# Buzzer
+The buzzer will tell you if there is any issues with the gps/sdcard
+* Heavy sound : Wiring issues or no microsd 
 * Soft repetitive sound : GPS is calibrating (can take up to 5 minutes)
 * Melody : GPS is online
 * Soft and short sound : GPS coordinates saved to sd  
 
-# Components:
-  * Ublox GPS module (or compatible with tinygps++)
-  * Micro SD to SD card Adapter
-  * 2Go (or less) Micro SD card 
-  * A buzzer
-  * An Arduino Pro Mini 3V
-  * Batteries   
+# Components
+Use theses keyword to find the components
+* Gps module ublox Aircraft model mwc: 8€
+* Micro sd card 2go : 4€
+* Batteries holder 4AAA on/off : 1€ 
+* Arduino mini pro 3.3V : 1,50€
+* Passive buzzer 3v:  1€  
+* Total : 15.50€   
 
-Estimate cost : 15.50€ (batteries not included) 
-
-More details on [bill_of_materials.md](https://github.com/pigetArduino/gpsLogger/blob/master/doc/bill_of_materials.md)
-
-#  Tools:
- * ftdi 3V/5V programmer
-
+# Tools
+* FTDI basic breakout usb ttl 3.3 : 6.23€
+* Cable 30awg  8-color: 5.37€
+ 
 # Software needed:
   * Arduino (Programmation): http://arduino.madnerd.org
   * Cura (3D printing): https://ultimaker.com/en/products/cura-software
