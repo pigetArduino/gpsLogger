@@ -1,6 +1,8 @@
 GPS Logger
 ----------
 
+![Wiring GPS](https://github.com/pigetArduino/gpsLogger/raw/master/doc/gpslogger.jpg)
+
 [Version française / French version](https://github.com/pigetArduino/gpsLogger/blob/master/readme.fr.md)
 
 Record gps coordinate in a csv file on an SD card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
