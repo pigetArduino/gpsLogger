@@ -1,6 +1,8 @@
 Traceur GPS (GPS Logger) 
 ----------
 
+![Wiring GPS](https://github.com/pigetArduino/gpsLogger/raw/master/doc/gpslogger.jpg)
+
 Enregistre les coordonées GPS dans un fichier csv sur une carte micro sd toutes les 15 seconds   
 (JOURHEUREMINUTESSECONDES.CSV)
 [Fichier d'exemple](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
