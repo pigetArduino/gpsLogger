@@ -24,7 +24,7 @@ http://gps.madnerd.org
 * Go to file
 * Retrieve
 * Import file with GPS Babel
-* Choose (at the end of the list) : Import with gps babel
+* Choose (at the end of the list) : universal csv with field structure in first line
 * Add a map in layer
 * Use Open Street Map (Mapnick) or Bing Aerial
 
