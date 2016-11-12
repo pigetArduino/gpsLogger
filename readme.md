@@ -5,11 +5,16 @@ GPS Logger
 
 [Version française / French version](https://github.com/pigetArduino/gpsLogger/blob/master/readme.fr.md)
 
-Record gps coordinate in a csv file on an SD card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
+Record gps coordinate in a csv file on an Micro card every 15 seconds (DAYHOURMINUTESSECOND.csv)   
 [Example file](https://github.com/pigetArduino/gpsLogger/blob/master/doc/example.csv)
 
 # Download link
 http://gps.madnerd.org
+
+# Videos / Instructables
+* How to build it : https://www.youtube.com/watch?v=gYxDJqSLVxQ
+* How to use it : https://www.youtube.com/watch?v=96iCh5vVnsw
+* Instructables : http://www.instructables.com/id/Simple-GPS-Logger/
 
 # How to convert the track
 
@@ -29,7 +34,7 @@ http://gps.madnerd.org
 * Use Open Street Map (Mapnick) or Bing Aerial
 
 # Buzzer
-The buzzer will tell you if there is any issues with the gps/sdcard
+The buzzer will tell you if there is any issues with the gps/ micro sdcard
 * Heavy sound : Wiring issues or no microsd 
 * Soft repetitive sound : GPS is calibrating (can take up to 5 minutes)
 * Melody : GPS is online
@@ -38,11 +43,13 @@ The buzzer will tell you if there is any issues with the gps/sdcard
 # Components
 Use theses keyword to find the components
 * Gps module ublox Aircraft model mwc: 8€
-* Micro sd card 2go : 4€
+* Micro sd card 2go (w/ micro sd card adapter): 4€
 * Batteries holder 4AAA on/off : 1€ 
 * Arduino mini pro 3.3V : 1,50€
 * Passive buzzer 3v:  1€  
 * Total : 15.50€   
+
+We are using a micro sd card adapter as a micro sdcard reader but you can also use a micro sd card reader module for this.
 
 # Tools
 * FTDI basic breakout usb ttl 3.3 : 6.23€
@@ -64,9 +71,9 @@ B Infill: Light
 
 # Wiring:
 ![Wiring GPS](https://github.com/pigetArduino/gpsLogger/blob/master/doc/gpsLogger_wiring.png)
-##  SD card 
+##  Micro SD card Adapter
 ```
-1 --> X
+1 --> Not connected
 2 --> 12
 3 --> GND
 4 --> 13
@@ -84,6 +91,14 @@ TX --> 3
 ## Buzzer
 ```
 + ---> 9
+```
+
+# Batttery pack placement
+As stated by bwh13 on instructables : 
+You should avoid obstructing the antenna with the battery pack
+```
+Nice project.
+Moving forward, consider placing your battery pack beneath your GPS module. The antenna works best with an unobstructed view of the sky
 ```
 
 ## Libraries
