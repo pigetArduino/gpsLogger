@@ -10,6 +10,11 @@ Enregistre les coordonées GPS dans un fichier csv sur une carte micro sd toutes
 # Télécharger
 http://gps.madnerd.org
 
+# Vidéos / Instructables
+* Fabrication : https://www.youtube.com/watch?v=jfu29oI2C5M
+* Utilisation : https://www.youtube.com/watch?v=2oaBtQ-7Zj4
+* Instructables : http://www.instructables.com/id/Simple-GPS-Logger/
+
 # Comment convertir le parcours
 ## Gpsies.com
 * Aller sur http://gpsies.com
@@ -35,11 +40,13 @@ http://gps.madnerd.org
 # Composants
 Utilisez ses mots-clés pour chercher les composants:
 * Gps module ublox Aircraft model mwc: 8€
-* Micro sd card 2go : 4€
+* Micro sd card 2go (avec adapteur micro sd): 4€
 * Batteries holder 4AAA on/off : 1€ 
 * Arduino mini pro 3.3V : 1,50€
 * Passive buzzer 3v:  1€  
 * Total : 15.50€   
+
+Nous utilisons un adapteur de carte micro sd comme lecteur de carte, vous pouvez évidemment utiliser un module pour lire les cartes microsd à la place.
 
 # Outils
 * FTDI basic breakout usb ttl 3.3 : 6.23€
@@ -62,7 +69,7 @@ B Infill: Dense
  
 # Câblage:
 ![Wiring GPS](https://github.com/pigetArduino/gpsLogger/blob/master/doc/gpsLogger_wiring.png)
-##  Carte SD 
+##  Adapteur Carte Micro SD 
 ```
 1 --> X
 2 --> 12
@@ -82,6 +89,13 @@ TX --> 3
 ## Buzzer
 ```
 + ---> 9
+```
+
+## Placement des piles
+bwh13 sur instructables : Penser à placer le pack de piles au dessous du module GPS, afin de ne pas obstruer l'antenne
+```
+Nice project.
+Moving forward, consider placing your battery pack beneath your GPS module. The antenna works best with an unobstructed view of the sky
 ```
 
 ## Bibliothèques
